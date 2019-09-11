@@ -51,9 +51,7 @@ function add(scheme) {
 function update(changes, id) {
     return db('schemes')
     .where({ id: id })
-    .update({
-        scheme_name: changes.scheme_name
-    })
+    .update(changes)
     .then(updated => {
         return updated;
     })
