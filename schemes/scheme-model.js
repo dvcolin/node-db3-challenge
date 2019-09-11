@@ -28,6 +28,7 @@ function findSteps(id) {
     .select('scheme_name','step_number', 'instructions').from('steps')
     .join('schemes', 'schemes.id', '=', 'steps.scheme_id')
     .where({ scheme_id: id })
+    .orderBy('step_number', 'asc')
 
     .then(res => {
         if (res) {
@@ -39,7 +40,10 @@ function findSteps(id) {
 }
 
 function add(scheme) {
-
+    return db('schemes').insert(scheme)
+    .then(scheme => {
+        return scheme[0];
+    })
 }
 
 
